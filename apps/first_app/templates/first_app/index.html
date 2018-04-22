@@ -1,0 +1,72 @@
+<!-- <!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Registration Page</title>
+    <h2>Registration</h2>
+  </head>
+  <body>
+        <form action="/process" method="post">
+            {% csrf_token%}
+            First Name: <input type="text" name="first_name" placeholder="first name"></br>
+            Last Name: <input type="text" name="last_name" placeholder="last name"></br>
+            Email: <input type="text" name="email" placeholder="email"></br>
+            Password: <input type="password" name="password"></br>
+            Verify Password: <input type="password" name="password_confirm"></br>
+            <input type="submit" value="Register">
+        </form></br>
+
+        <form action="/process" method="post">
+            {% csrf_token%}
+            Username: <input type="text" name="username" placeholder="username"></br>
+            Password: <input type="password" name="password"></br>
+
+        </form>
+        <a href='/logged_in'><button>Login</button></a>
+    </div>
+  </body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!--<link href="css/style.css" rel="stylesheet">-->
+    </head>
+    <body>
+        {% if messages %}
+            {% for message in messages %}
+            <p>{{message}}</p>
+            {% endfor %}
+        {% endif %}
+        <form action='/process' method='post'>
+            {% csrf_token %}
+            <h1>Registration</h1>
+            <label for="first_name">First Name: </label>
+            <input type="text" name="first_name"><br>
+            <label for="last_name">Last Name: </label>
+            <input type="text" name="last_name"><br>
+            <label for="email">Email: </label>
+            <input type="text" name="email"><br>
+            <label for="password">Password: </label>
+            <input type="password" name="password"><br>
+            <label for="confirm_password">Confirm PW: </label>
+            <input type="password" name="confirm_password"><br>
+
+            <input type="submit" value="Register">
+        </form>
+        <form action='/login' method='post'>
+            {% csrf_token %}
+            <h1>Login</h1>
+            <label for="email">Email: </label>
+            <input type="email" name="email"><br>
+            <label for="password">Password: </label>
+            <input type="password" name="password"><br>
+            <input type="submit" value="Login">
+        </form>
+    
+    </body>
+</html>
