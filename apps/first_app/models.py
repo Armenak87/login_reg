@@ -20,16 +20,15 @@ class UserManager(models.Manager):
             errors.append("Last Name can only contain letters")
         if not EMAIL_REGEX.match(postData['email']):
             errors.append("Invalid Email Address")
-            #The line below check for duplicate emails
+            # The line below will make sure you don't make duplicates
         if (User.objects.filter(email = postData['email']).count()) > 0:
             errors.append("Email already exists")
-        # if User.objects.filter(email=['email']).exists():
-            # errors.append("Email already exits")
+        if postData['password'] != postData['confirm_password']:
             errors.append("Password and confirmation don't match")        
         if len(postData['password']) < 8:
             errors.append("Password must be 8 chracters minimum")
         if postData['password'] != postData['confirm_password']:
-            errors.append("Password and confirmation don't match")
+            errors.append("Confirmation and password don't match")
         return errors
 
     def create_user(self, clean_data):

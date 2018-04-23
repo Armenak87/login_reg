@@ -8,6 +8,9 @@ def index(request):
     return render(request, 'first_app/index.html')
 
 def success(request):
+    if "id" not in request.session:
+        messages.error(request, "Your not logged In")
+        return redirect('/')
     return render(request, 'first_app/success.html')
 
 def process(request):
@@ -40,4 +43,7 @@ def login(request):
         messages.error(request, "Email or Password Invalid")
         return redirect('/')
 
-# def logout(request):
+def logout(request):
+    request.session.pop("id")
+    messages.info(request, "You are logged out")
+    return redirect('/')
